@@ -16,9 +16,8 @@ Template básico **back end**
 ## Instalação
 
 ``` bash
-# git clone
+# 
 $ git clone https://github.com/eric218110/template-api.git
-
  
 $ cd template-api
 
