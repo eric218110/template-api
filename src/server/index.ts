@@ -1,8 +1,10 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import { UserModel } from "@models/User";
 
 const app = express();
 
-app.get("/", (request: Request, response: Response) => {
+app.get("/", (request, response) => {
+  new UserModel();
   return response.json({ message: "Hello World" });
 });
 
