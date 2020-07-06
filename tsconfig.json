@@ -20,16 +20,20 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "sourceMap": true,
     "paths": {
       "@controllers/*": [
         "./src/source/controllers/*"
       ],
-      "@models/*": [
-        "./src/source/models/*"
-      ],
       "@services/*": [
         "./src/source/services/*"
-      ]
+      ],
+      "@entitys/*": [
+        "./src/database/entitys/*"
+      ],
+      "@logger": [
+        "./src/common/logger/index.ts"
+      ],
     }
   },
   "include": [

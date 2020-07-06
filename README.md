@@ -1,19 +1,20 @@
-# TEMPLATE API REST
+<h1 align="center">
+Basic back end template
+</h1>
 
-Template básico **back end**
+### Description
 
-### Descrição
-
-> Template simples para api node
+> Simple template for api node
 > Back end
 
-### Tecnologias 
+### Technology
 
-* Express
-* TypeScript
-* NodeJS
+* [Express](http://expressjs.com/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [TypeORM](http://typeorm.io/)
+* [Chalk](https://github.com/chalk/chalk)
 
-## Instalação
+## Install
 
 ``` bash
 # 
@@ -21,10 +22,20 @@ $ git clone https://github.com/eric218110/template-api.git
  
 $ cd template-api
 
-$ yarn or npm install
+$ yarn install or npm install
 ````  
 
-## Dev Dependencies
+## Environment variables
+
+> DATABASE_HOST: Host for the database.
+> DATABASE_USER: User database.
+> DATABASE_PASS: Password database.
+> DATABASE_PORT: Port database.
+> DATABASE_NAME: Database name.
+> SERVER_PORT: Port for running the server.
+> MODE: Application, test, development or production mode.
+
+## Development dependencies
 
 * Eslint
 * Jest
@@ -43,9 +54,12 @@ $ yarn start
 # test
 $ yarn test
 ````
-```` bash
+
+`
+
+``` bash
 # dev
 $ yarn dev
 ````
 
-### [Eric Silva Mendes](https://github.com/eric218110/)
+### [My github](https://github.com/eric218110/)
