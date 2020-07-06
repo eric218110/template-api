@@ -4,6 +4,7 @@ import {
 } from 'typeorm';
 import { config } from 'dotenv';
 import { resolve } from 'path';
+import { Logger } from '@logger';
 
 class ConnectionFactory {
   async createConnection () {
@@ -30,7 +31,7 @@ class ConnectionFactory {
         entities: [resolve(__dirname, '.', 'entitys', '*.entity{.ts,.js}')]
       });
     } catch (error) {
-      console.log('not Connected database - ' + error);
+      Logger.error({ title: 'not Connected database', message: error });
       throw new Error('Not connected database');
     }
   }
