@@ -17,7 +17,7 @@ Basic back end template
 ## Install
 
 ``` bash
-# 
+
 $ git clone https://github.com/eric218110/template-api.git
  
 $ cd template-api
@@ -41,6 +41,10 @@ $ yarn install or npm install
 * Jest
 * Babel
 * TS-Node-Dev
+
+## Development test
+
+* Jest
 
 ``` bash
 # build
