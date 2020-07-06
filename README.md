@@ -27,13 +27,13 @@ $ yarn install or npm install
 
 ## Environment variables
 
-> DATABASE_HOST: Host for the database.
-> DATABASE_USER: User database.
-> DATABASE_PASS: Password database.
-> DATABASE_PORT: Port database.
-> DATABASE_NAME: Database name.
-> SERVER_PORT: Port for running the server.
-> MODE: Application, test, development or production mode.
+> * DATABASE_HOST: Host for the database.
+> * DATABASE_USER: User database.
+> * DATABASE_PASS: Password database.
+> * DATABASE_PORT: Port database.
+> * DATABASE_NAME: Database name.
+> * SERVER_PORT: Port for running the server.
+> * MODE: Application, test, development or production mode.
 
 ## Development dependencies
 
