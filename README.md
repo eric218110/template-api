@@ -55,9 +55,7 @@ $ yarn start
 $ yarn test
 ````
 
-`
-
-``` bash
+````bash
 # dev
 $ yarn dev
 ````
