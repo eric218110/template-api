@@ -1,9 +1,6 @@
-import { UserModel } from '../source/models/User';
 
 test('It should be ok !', () => {
-  const userModel = new UserModel();
+  const name = 'Eric Silva';
 
-  userModel.name = 'Eric Silva';
-
-  expect(userModel.name).toEqual('Eric Silva');
+  expect(name).toEqual('Eric Silva');
 });

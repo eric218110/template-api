@@ -1,12 +1,3 @@
-import express from 'express';
-import { User } from '@controllers/User';
+import { Bootstrap } from '../core/bootstrap';
 
-const app = express();
-
-app.get('/', (request, response) => {
-  // eslint-disable-next-line no-new
-  new User();
-  return response.json({ message: 'Hello World' });
-});
-
-app.listen(1995);
+Bootstrap.init();
