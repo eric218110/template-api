@@ -46,6 +46,8 @@ $ yarn install or npm install
 
 * Jest
 
+## Running
+
 ``` bash
 # build
 $ yarn build
