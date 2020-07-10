@@ -35,34 +35,48 @@ $ yarn install or npm install
 > * SERVER_PORT: Port for running the server.
 > * MODE: Application, test, development or production mode.
 
+#
+## Dependencies
+
+* chalk: ^4.1.0
+* dotenv: ^8.2.0
+* expres: 4.17.1
+* pg: ^8.2.1
+* typeorm: ^0.2.2
+#
+
 ## Development dependencies
 
 * Eslint
 * Jest
 * Babel
 * TS-Node-Dev
-
+#
 ## Development test
 
 * Jest
-
+#
 ## Running
 
 ``` bash
 # build
+
 $ yarn build
 ````  
 ````bash
 # start
+
 $ yarn start
 ````  
 ````bash
 # test
+
 $ yarn test
 ````
 
 ````bash
 # dev
+
 $ yarn dev
 ````
 
