@@ -16,4 +16,13 @@ export class Logger {
     const { log } = console;
     log(chalk.green(`${success.title !== undefined ? success.title.toUpperCase() : ''} - ${success.message}`));
   }
+
+  static info (info: {message: string, title?: string}) {
+    const { message, title } = info;
+    const { log } = console;
+    const titleMessage = chalk.green(title !== undefined ? title.toUpperCase() : '');
+    const msg = chalk.blue(message);
+
+    log(titleMessage + ' - ' + msg);
+  }
 }

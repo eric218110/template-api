@@ -30,16 +30,17 @@ export class Bootstrap {
 
   routes () {
     routes.map(route => {
-      const { middlewares } = route;
-      this.app[route.method](route.path, [
+      const { middlewares, action, method, path } = route;
+      this.app[route.method.toString()](route.path, [
         (middlewares !== undefined
           ? middlewares.map(middleware => (req: Request, res: Response, next: NextFunction) => {
             middleware(req, res, next);
           })
           : (req: Request, res: Response, next: NextFunction) => next()),
         (req: Request, res: Response) => {
-          route.action(req, res);
+          action(req, res);
         }]);
+      Logger.info({ title: 'routes', message: `[ ${path} ] : [ ${method.toUpperCase()} ]` });
     });
   }
 
