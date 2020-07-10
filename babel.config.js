@@ -15,6 +15,7 @@ module.exports = {
         alias: {
           '@controllers': './src/source/controllers/',
           '@services': './src/source/services/',
+          '@middlewares': './src/source/middlewares/',
           '@entitys': './src/database/entitys/',
           '@logger': './src/common/logger/index.js'
         }

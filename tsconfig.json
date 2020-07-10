@@ -28,6 +28,9 @@
       "@services/*": [
         "./src/source/services/*"
       ],
+      "@middlewares/*": [
+        "./src/source/middlewares/*"
+      ],
       "@entitys/*": [
         "./src/database/entitys/*"
       ],

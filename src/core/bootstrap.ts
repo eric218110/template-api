@@ -1,29 +1,54 @@
-import express from 'express';
+// eslint-disable-next-line no-unused-vars
+import express, { Request, Response, NextFunction } from 'express';
 import { config } from 'dotenv';
 import { createConnectionFactoty } from '../database';
 import { Logger } from '@logger';
+import { routes } from './routes';
 
 export class Bootstrap {
-  static async init () {
+  private app: express.Application;
+
+  constructor () {
+    this.app = express();
+    this.connectionDatabase();
+    this.routes();
+    this.listen();
+  }
+
+  private connectionDatabase () {
     try {
-      config();
-      const port = process.env.SERVER_PORT || 1504;
-      const app = express();
-      // CREATE CONNECTION WITH TYPEORM
       createConnectionFactoty()
         .then(() => Logger.success({ message: 'Database init', title: 'database' }))
         .catch(erro => {
           Logger.error({ title: 'database', message: erro });
         });
+    } catch (error) {
+      console.log(error);
+      throw new Error('Not running server');
+    }
+  }
 
-      // ROUTES APPLICATION
-      app.get('/', async (request, response) => {
-        response.json({ message: 'Hello word' });
-      });
+  routes () {
+    routes.map(route => {
+      const { middlewares } = route;
+      this.app[route.method](route.path, [
+        (middlewares !== undefined
+          ? middlewares.map(middleware => (req: Request, res: Response, next: NextFunction) => {
+            middleware(req, res, next);
+          })
+          : (req: Request, res: Response, next: NextFunction) => next()),
+        (req: Request, res: Response) => {
+          route.action(req, res);
+        }]);
+    });
+  }
 
-      // LISTEN PORT SERVER
-      app.listen(port);
-      Logger.success({ title: 'SERVER', message: `Server running in port ${port}` });
+  private async listen () {
+    try {
+      config();
+      const port = process.env.SERVER_PORT || 1504;
+      this.app.listen(port);
+      Logger.success({ title: 'server', message: `Server running in port ${port}` });
     } catch (error) {
       console.log(error);
       throw new Error('Not running server');

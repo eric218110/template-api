@@ -4,6 +4,7 @@ export class Logger {
   static error (error: {message: string, title?: string}) {
     const { log } = console;
     log(chalk.redBright(`${error.title !== undefined ? error.title.toUpperCase() : ''} - ${error.message}`));
+    throw new Error(error.message);
   }
 
   static warning (warning: {message: string, title?: string}) {
