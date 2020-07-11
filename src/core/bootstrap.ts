@@ -1,9 +1,11 @@
-// eslint-disable-next-line no-unused-vars
-import express, { Request, Response, NextFunction } from 'express';
+/* eslint-disable no-unused-vars */
+import 'reflect-metadata';
+import express, { Request, Response, NextFunction, request } from 'express';
 import { config } from 'dotenv';
 import { createConnectionFactoty } from '../database';
 import { Logger } from '@logger';
-import { routes } from './routes';
+import { User } from '@controllers/User';
+import { RouteDefinition } from 'src/common/decorators/class/routeDefinition';
 
 export class Bootstrap {
   private app: express.Application;
@@ -29,18 +31,26 @@ export class Bootstrap {
   }
 
   routes () {
-    routes.map(route => {
-      const { middlewares, action, method, path } = route;
-      this.app[route.method.toString()](route.path, [
-        (middlewares !== undefined
-          ? middlewares.map(middleware => (req: Request, res: Response, next: NextFunction) => {
-            middleware(req, res, next);
-          })
-          : (req: Request, res: Response, next: NextFunction) => next()),
-        (req: Request, res: Response) => {
-          action(req, res);
-        }]);
-      Logger.info({ title: 'routes', message: `[ ${path} ] : [ ${method.toUpperCase()} ]` });
+    [User].map(controller => {
+      const instance = new User();
+      const prefix = Reflect.getMetadata('prefix', controller);
+      const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
+
+      routes.map(route => {
+        const { middlewares, method, path } = route;
+
+        this.app[route.method.toString()](prefix + route.path, [
+          (middlewares !== undefined)
+            ? middlewares.map(middleware => (request: Request, response: Response, next: NextFunction) => {
+              middleware(request, response, next);
+            })
+            : (request: Request, response: Response, next: NextFunction) => next(),
+          (request: Request, response: Response) => {
+            instance[route.methodName](request, response);
+          }
+        ]);
+        Logger.info({ title: 'routes', message: `[ "${prefix + path}" => ${method.toUpperCase()} ]` });
+      });
     });
   }
 

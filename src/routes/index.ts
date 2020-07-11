@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response, NextFunction } from 'express';
 import { HTTP_METHODS } from 'src/constants/http.enum';
+import { User } from '@controllers/User';
 
 interface IRoutes{
     method: HTTP_METHODS;
@@ -15,6 +16,7 @@ class Routes {
     constructor () {
       this.routes.push({ action: this.initialRouter, path: '/', method: HTTP_METHODS.GET, middlewares: [this.initialMiddleware, this.initialMiddleware2, this.initialMiddleware3] });
       this.routes.push({ action: this.initialRouter, path: '/', method: HTTP_METHODS.PUT });
+      this.routes.push({ action: new User().show, path: '/user', method: HTTP_METHODS.GET });
     }
 
     private async initialRouter (request: Request, response: Response) {

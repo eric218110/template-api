@@ -1,19 +1,9 @@
-type TPathParams = string | RegExp | (string | RegExp)[];
 
-interface IControllerMiddleware{
-    useBefore: any[];
-    use: any[];
-    useAfter: any[];
-}
-
-interface IControllerOptions{
-    path: TPathParams;
-    routingOptions: any;
-    middleware?: IControllerMiddleware
-}
-
-export function Controller (options: TPathParams | IControllerOptions): Function {
-  return (target: any): void => {
-    console.log(options, target);
+export const Controller = (prefix: string): ClassDecorator => {
+  return (target: any) => {
+    Reflect.defineMetadata('prefix', prefix, target);
+    if (!Reflect.hasMetadata('routes', target)) {
+      Reflect.defineMetadata('routes', [], target);
+    }
   };
-}
+};
