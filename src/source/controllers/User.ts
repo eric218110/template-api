@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response, NextFunction } from 'express';
 import { Controller } from '../../common/decorators/class/controller';
-import { Get } from 'src/common/decorators/class/methods/get';
+import { Get } from 'src/common/decorators/class/methods';
 
 @Controller('/user')
 export class User {
